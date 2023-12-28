@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  api-service:
+    image: api-service
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      API_PREFIX: "api/v1"
+      PORT: "3000"
+    networks:
+      - dev_network
+
+networks:
+  dev_network:
+    driver: bridge
