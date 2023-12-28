@@ -54,13 +54,10 @@ jobs:
       - name: Set environment variable
         run: |
           SHORT_SHA_COMMIT=$(git rev-parse --short HEAD)
-      
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        id: buildx
+          echo CONTAINER_BE_RELEASE_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/api-service:${SHORT_SHA_COMMIT} >> $GITHUB_ENV
 
       - name: Build, tag, and push image to Docker hub
-        run: docker-compose -f docker-compose-build.yaml build --parallel 
+        run: docker build -t ${CONTAINER_BE_RELEASE_IMAGE} .
 
       - name: List Docker images
         run: docker images
