@@ -6,11 +6,9 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/
+COPY . .
 RUN npm install --legacy-peer-deps && npm cache clean --force
-
-# Bundle app source
-COPY . /usr/src/app
+RUN npm run build
 
 EXPOSE $PORT
 
