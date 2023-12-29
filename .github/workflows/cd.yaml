@@ -54,7 +54,7 @@ jobs:
       - name: Set environment variable
         run: |
           SHORT_SHA_COMMIT=$(git rev-parse --short HEAD)
-          echo CONTAINER_BE_RELEASE_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/api-service:${SHORT_SHA_COMMIT} >> $GITHUB_ENV
+          echo CONTAINER_RELEASE_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/api-service:${SHORT_SHA_COMMIT} >> $GITHUB_ENV
           echo REPO_MANIFEST_NAME=k8s-devops >> $GITHUB_ENV
           echo REPO_MANIFEST_URL=github.com/nthduc95/k8s-devops.git >> $GITHUB_ENV
           echo REPO_MANIFEST_BRANCH=master >> $GITHUB_ENV
@@ -62,13 +62,13 @@ jobs:
           echo REPO_MANIFEST_TAG_IMAGE=image_api_service >> $GITHUB_ENV
 
       - name: Build, tag, and push image to Docker hub
-        run: docker build -t ${CONTAINER_BE_RELEASE_IMAGE} .
+        run: docker build -t ${CONTAINER_RELEASE_IMAGE} .
 
       - name: List Docker images
         run: docker images
 
       - name: Push Docker images
-        run: docker push ${CONTAINER_BE_RELEASE_IMAGE}
+        run: docker push ${CONTAINER_RELEASE_IMAGE}
 
       - name: Cache Docker image
         uses: actions/cache@v3
