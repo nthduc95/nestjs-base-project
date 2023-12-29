@@ -82,4 +82,6 @@ jobs:
         env:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
+          ls -al /bin
+          chmod 777 -R ./ci
           ./ci/updateManifest.sh
