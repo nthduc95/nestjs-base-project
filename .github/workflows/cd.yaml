@@ -58,7 +58,7 @@ jobs:
           echo REPO_MANIFEST_NAME=k8s-devops >> $GITHUB_ENV
           echo REPO_MANIFEST_URL=github.com/nthduc95/k8s-devops.git >> $GITHUB_ENV
           echo REPO_MANIFEST_BRANCH=master >> $GITHUB_ENV
-          echo REPO_MANIFEST_ENV_MAIN=./clusters/k8s-dev/api-service >> $GITHUB_ENV
+          echo REPO_MANIFEST_ENV_MAIN=./cluster/k8s-dev/api-service >> $GITHUB_ENV
           echo REPO_MANIFEST_TAG_IMAGE=image_api_service >> $GITHUB_ENV
 
       - name: Build, tag, and push image to Docker hub
