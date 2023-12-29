@@ -74,7 +74,7 @@ jobs:
             docker-${{ github.sha }}-
 
       - name: Update manifest
-      env:
-        PERSONAL_ACCESS_TOKEN: ${{ secrets.REGISTRY_PASSWORD }}
-      run: |
-        ./ci/updateManifest.sh
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.REGISTRY_PASSWORD }}
+        run: |
+          ./ci/updateManifest.sh
