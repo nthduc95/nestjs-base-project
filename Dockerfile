@@ -6,8 +6,12 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
+# Install dependencies
+COPY package.json .
+RUN npm install && npm cache clean --force
+
+# Copy source
 COPY . .
-RUN npm install --legacy-peer-deps && npm cache clean --force
 RUN npm run build
 
 EXPOSE $PORT
