@@ -1,17 +1,48 @@
 version: '3.9'
 services:
-  api-service:
-    image: api-service
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - "3000:3000"
+  # api-service:
+  #   image: api-service
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     API_PREFIX: "api/v1"
+  #     PORT: "3000"
+  #   networks:
+  #     - dev_network
+
+  db:
+    image: mysql:8.0.32
     environment:
-      API_PREFIX: "api/v1"
-      PORT: "3000"
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=nest_base_dev
+      - MYSQL_PASSWORD=root
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
     networks:
       - dev_network
+  adminer:
+    image: adminer:4-standalone
+    ports:
+      - "8080:8080"
+    networks:
+      - dev_network
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - dev_network
+
+volumes:
+  db_data:
+  redis_data:
 
 networks:
   dev_network:

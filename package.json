@@ -17,12 +17,16 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:generate": "rm -rf dist && nest build && node_modules/.bin/typeorm migration:generate -n",
+    "migration:run": "rm -rf dist && nest build && node_modules/.bin/typeorm migration:run",
+    "migration:revert": "rm -rf dist && nest build && node_modules/.bin/typeorm migration:revert"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.10.3",
     "@nestjs/axios": "^3.0.1",
     "@nestjs/bull": "^10.0.1",
+    "@nestjs/cache-manager": "^2.2.0",
     "@nestjs/common": "10.0.0",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "10.0.0",
@@ -37,6 +41,8 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cookie-parser": "^1.4.6",
+    "joi": "^17.4.2",
+    "mysql2": "^2.3.0",
     "reflect-metadata": "0.1.13",
     "rxjs": "7.8.1"
   },
