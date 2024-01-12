@@ -1,0 +1,16 @@
+table:
+  name: users
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - name
+        - role
+        - provider
+        - created_at
+        - updated_at
+      filter: {}
+      limit: 100
+      allow_aggregations: true

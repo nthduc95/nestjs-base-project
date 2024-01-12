@@ -41,6 +41,7 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cookie-parser": "^1.4.6",
+    "hasura-cli": "^2.36.1",
     "joi": "^17.4.2",
     "mysql2": "^2.3.0",
     "reflect-metadata": "0.1.13",
