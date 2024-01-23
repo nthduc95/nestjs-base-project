@@ -4,7 +4,15 @@ import * as redisStore from 'cache-manager-redis-store';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configModuleOptions } from './configs/module-options';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CacheModule, CacheModuleOptions } from '@nestjs/cache-manager';
+import {
+  CacheInterceptor,
+  CacheModule,
+  CacheModuleOptions,
+} from '@nestjs/cache-manager';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { AllExceptionsFilter } from './filters/all-exception.filter';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { AppLoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -48,7 +56,13 @@ import { CacheModule, CacheModuleOptions } from '@nestjs/cache-manager';
         return { ...cacheConfig };
       },
     }),
+    AppLoggerModule,
   ],
-  exports: [ConfigModule],
+  exports: [ConfigModule, AppLoggerModule],
+  providers: [
+    { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
+    { provide: 'CACHE_INTERCEPTOR', useClass: CacheInterceptor },
+  ],
 })
 export class SharedModule {}

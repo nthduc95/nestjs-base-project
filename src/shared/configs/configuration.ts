@@ -25,4 +25,13 @@ export default () => ({
       channel: process.env.REDIS_ABT_CHANNEL,
     },
   },
+  googleOAuth: {
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    tokenExpiresIn: process.env.JWT_TOKEN_EXPIRES_IN,
+    refreshTokenExpiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN,
+  },
 });

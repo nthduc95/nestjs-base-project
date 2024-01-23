@@ -16,4 +16,7 @@ export class User extends BaseEntityIncrementId {
 
   @Column({ nullable: true })
   provider: PROVIDER;
+
+  @Column({ nullable: true })
+  password: string;
 }
